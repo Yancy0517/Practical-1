@@ -9,3 +9,4 @@
 # Step 7 was done by Jialong He alone 
 # step 10 was done by Linsheng Shu alone 
 # The rest of the steps were written individually. At the end, the group carried out a comparison and discussion of each person's code to find the best approach.
+
