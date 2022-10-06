@@ -11,7 +11,7 @@
 # The rest of the steps were written individually. At the end, the group carried out a comparison and discussion of each person's code to find the best approach.
 
 #3
-setwd("/Users/shulinsheng/Desktop/Statistical\ Programming")
+setwd("/Users/shulinsheng/Desktop/Statistical\ Programming") #This is Linsheng's working directory. The user need to change the directory.
 a <- scan("pg10.txt",what="character",skip=104) ## skip contents
 n <- length(a)
 a <- a[-((n-2886):n)]
@@ -21,7 +21,7 @@ a <- a[-grep("[0123456789]:[0123456789]", a)] ## Strip out verse numbers
 # Split_punct function can separate the punctuation marks from words
 split_punct <- function(a, punct){
   bible <- a 
-  bible <- gsub("[()]", "", bible) # Remove "(" and ")" .
+  bible <- gsub("[()]", "", bible) # Remove "(" and ")" 
   ii <- grep(punct, bible) # Position of words with a punctuation mark
   split_p<- rep ("", length(ii)+ length(bible)) # New vector to store words and punctuation mark
   iis <- ii+1:length(ii) # new position of punctuation mark.
