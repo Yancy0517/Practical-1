@@ -11,7 +11,7 @@
 # The rest of the steps were written individually. At the end, the group carried out a comparison and discussion of each person's code to find the best approach.
 
 #3
-setwd("C:\\Users\\niehe\\Desktop\\S.P")
+setwd("/Users/shulinsheng/Desktop/Statistical\ Programming")
 a <- scan("pg10.txt",what="character",skip=104) ## skip contents
 n <- length(a)
 a <- a[-((n-2886):n)]
@@ -56,6 +56,17 @@ unique_capital<- unique_capital[-de] # Find words in the Bible that appear with 
 position_in_as <- match(after_split, unique_capital) # Match after_split and unique_capital
 amount_of_capital <- tabulate(position_in_as) # Counting the number 
 cm <- cbind(unique_capital,amount_of_capital) # Create a matrix of uppercase words and their corresponding numbers
+#Begin to replace the lower words with capital words
+for(i in 1:348){
+  for(j in 1:500){
+    if(tolower(cm[i,1])==bm[j,1]){                              # Find same word  
+      if(as.numeric(cm[i,2])*2 > as.numeric(bm[j,2])){          # Compare the number of occurrences of selected words in upper and lower case
+        bm[j,1] <- cm[i,1]                                      #Upper case form replaces lower case form in "bm"
+      }
+    }
+  }
+}
+b <- bm[,1]
 
 #7
 # probability of Three-dimensional arrays: T 
