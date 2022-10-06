@@ -32,3 +32,65 @@ split_punct <- function(a, punct){
 }
 #5 
 after_split <- split_punct(a, "[,.?!:;]") # Separate the punctuation marks
+#6
+lowerb <- tolower(after_split) # Lowercase the upper case text in the data
+unique_word <- unique(lowerb) # Find the unique words in the "lowerb"
+indicies <- match(lowerb,unique_word) # Position of each unique word 
+amount <- tabulate(indicies) # Counting the number of each unique word.
+lowerp <- order(amount,decreasing = TRUE) # Sort the occurrences of each unique word in "amount" from most to least (The output is the location)
+b <- unique_word[lowerp[1:500]] # The 500 most frequently occurring words
+
+#7
+# probability of Three-dimensional arrays: T 
+p <- match(after_split, b) # match "after_split" and "b"
+c1 <- p[-(length(p)-1):-length(p)] # Delete the last two data in "p"
+c2 <- p[-1] # Delete the first data in "p"
+c2 <- c2[-length(c2)] #delete the last data in ("p"/old "c2")
+c3 <- p[-1:-2] # Delete the first two data in "p"
+M3 <- cbind(c1,c2,c3) # Make a matrix 
+rs <-rowSums(M3) # Summation of each row of the matrix
+del_rows <- which(is.na(rs)) # Find which rows has NA
+M3 <- M3[-del_rows,] # Remove rows with NA
+T <- array( data=0, dim = c(500,500,500)) # Build T
+for(i in 1:500){
+  t<- which(M3[,1]==i) 
+  if(length(t)!=0){
+    for(k in 1:500){
+      q <- which(M3[t,2]==k)
+      if(length(q)!=0){
+        for(j in 1:500){
+          v <- which(M3[q,3]==j)
+          if(length(v)!=0){
+            T[i,k,j]=length(v)/length(q) # Probability of getting each 3 words combinations
+            
+          }
+        }
+      }
+    }
+  }
+}
+
+# Single probability: S
+del_NA <- p[-(which(is.na(p)))] # remove NA
+S <- tabulate(del_NA)/length(del_NA) # Probability of each word 
+
+
+# Two-dimensional array probabilities: A
+c21 <- p[-length(p)] # delete the last data in "P"
+c22 <- p[-1] # delete the first data in "p"
+
+M2 <- cbind(c21,c22) # make a matrix
+del_rows2 <- is.na(rowSums(M2)) # find 
+M2 <- M2[-which(del_rows2),]  # Remove rows with NA
+A <- array(data = 0, c(500,500)) # Build A
+for(i in 1:500){
+  m <- which(M2[,"c21"]==i)
+  if(length(m)!=0){
+    for(j in 1:500){
+      n <- which(M2[m,"c22"]==j)
+      if(length(n)!=0){
+        A[i,j]=length(n)/length(m) # Probability of getting each 2 words combinations
+      }
+    }
+  }
+} 
