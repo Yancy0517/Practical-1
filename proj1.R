@@ -39,7 +39,7 @@ unique_word <- unique(lowerb) # Find the unique words in the "lowerb"
 indicies <- match(lowerb,unique_word) # Position of each unique word 
 amount <- tabulate(indicies) # Counting the number of each unique word.
 lowerp <- order(amount,decreasing = TRUE) # Sort the occurrences of each unique word in "amount" from most to least (The output is the location)
-amount[lowerp[500]] #the number of occurrences of the 500th word, i.e. the threshold is 163
+amount[lowerp[500]] # The number of occurrences of the 500th word, i.e. the threshold is 163
 b <- unique_word[lowerp[1:500]] # The 500 most frequently occurring words
 
 #10 We insert the code needed in step 10 here
